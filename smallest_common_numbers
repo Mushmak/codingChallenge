@@ -1,0 +1,90 @@
+// the normal way to do this would be to bruite force it 
+// loop through the 3 arrays until you find a match 
+// but i wanted to try a different approach and use the index of 
+
+// we get the largest of the first numbers from the 3 arrays 
+// use that number and check for occurance, if non found , go next 
+// once we run out of numbers in that one array 
+// we return false 
+function smallest_common_number(arr1,att2,arr3){
+	var largestOfSmallest; 
+    var arrayName; 
+    var check1; 
+    var check2; 
+    var answer = false;
+  
+  // check to see which of the first postions is the largest
+    if(arr1[0] > arr2[0] && arr1[0] > arr3[0]){
+        arrayName = 1;
+    }
+     if(arr2[0] > arr1[0] && arr2[0] > arr3[0]){
+        arrayName = 2;
+    }
+  	else {
+        arrayName = 3; 
+    }
+	
+    // now that we know what the largest number is we want to see if that number is in everything else 
+    // using indexof , if its there it'll return the index , if its not then it'll return -1 
+    
+    if (arrayName === 1 ){
+    	for (i = 0; i < arr1.length; ){
+          largestOfSmallest = arr1[i];
+          check1 = arr2.indexOf(largestOfSmallest);  
+    	  check2 = arr3.indexOf(largestOfSmallest); 
+          
+          if(check1 === -1 || check2 === -1){
+          	 i++
+          }
+          else{
+          	answer = arr1[i];   
+           break; 
+          }
+           
+        }
+    }
+    
+   if (arrayName === 2 ){
+    	for (i = 0; i < arr2.length; ){
+          largestOfSmallest = arr2[i];
+          check1 = arr1.indexOf(largestOfSmallest);  
+    	  check2 = arr3.indexOf(largestOfSmallest); 
+          
+          if(check1 === -1 || check2 === -1){
+          	 i++
+          }
+          else{
+          		answer = arr2[i];   
+            break; 
+          }
+          
+        }
+    }
+  
+    if (arrayName === 3 ){
+    	for (i = 0; i < arr3.length; ){
+          largestOfSmallest = arr3[i];
+          check1 = arr1.indexOf(largestOfSmallest);  
+    	  check2 = arr2.indexOf(largestOfSmallest); 
+          
+          if(check1 === -1 || check2 === -1){
+          	 i++
+          }
+          else{
+          	answer = arr3[i];   
+       		break; 
+          }
+          
+        }
+    }
+  
+  console.log(answer);  
+   
+  
+}// end of function 
+
+var arr1 = [1,2,3,5,6];
+var arr2 = [2,3,4,5,6];
+var arr3 = [4,5,6,7,8];
+
+smallest_common_number(arr1,arr2,arr3); 
